@@ -46,13 +46,17 @@ Linklist L;
 	while (p->next != NULL)
 	{
 		if (p->arr.size == e.size && p->arr.start == e.start)
-			break;          //这里条件可以换成p->arr==e  但是要重载==  我懒得写重载函数
+		{
+			//这里条件可以换成p->arr==e  但是要重载==  我懒得写重载函数
+			q->next = p->next;
+			p->next = NULL;
+			delete p;
+			break;
+		}
 		q = q->next;
 		p = p->next;
 	}
-	q->next = p->next;
-	p->next = NULL;
-	delete p;
+	
 }
 /*赋值*/void SetValue()
 {
