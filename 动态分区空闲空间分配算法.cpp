@@ -8,45 +8,45 @@ typedef struct Array
 	int size;
 	int start;
 	int end;
-	bool state;  //falseÎª¿ÕÏĞ£¬trueÎªÕ¼ÓÃ
-};  //ÄÚ´æÇø¿é
+	bool state;  //falseä¸ºç©ºé—²ï¼Œtrueä¸ºå ç”¨
+};  //å†…å­˜åŒºå—
 typedef struct LNode
 {
 	Array arr;
 	struct LNode* next;
-}*Linklist;  //Á´±í
+}*Linklist;  //é“¾è¡¨
 
 Array r1, r2, r3, r4, r5, temp;
-int order[10];  //´æ·ÅÃ¿¸ö¿ÕÏĞÇø¿éµÄ´óĞ¡
-int n;   //¿ÕÏĞÇø¿éµÄÊıÁ¿
+int order[10];  //å­˜æ”¾æ¯ä¸ªç©ºé—²åŒºå—çš„å¤§å°
+int n;   //ç©ºé—²åŒºå—çš„æ•°é‡
 Linklist L;
 
-/*ÉèÖÃÇø¿éÖµ*/void setArray(Array& r, int a, int b, int c, bool d)
+/*è®¾ç½®åŒºå—å€¼*/void setArray(Array& r, int a, int b, int c, bool d)
 {
 	r.size = a;
 	r.start = b;
 	r.end = c;
 	r.state = d;
 }
-/*²åÈë*/void Insert(Array e)
+/*æ’å…¥*/void Insert(Array e)
 {
 	LNode* q = L;
 	while (q->next != NULL)
-		q = q->next;    //ÕÒµ½¶ÓÎ²
+		q = q->next;    //æ‰¾åˆ°é˜Ÿå°¾
 	LNode* p = new LNode;
 	p->arr = e;
 	p->next = NULL;
 	q->next = p;
 }
-/*É¾³ı*/void Delete(Array e)
+/*åˆ é™¤*/void Delete(Array e)
 {
-	//ÔÚÁ´±íÖĞÕÒµ½e½áµã²¢É¾³ı
+	//åœ¨é“¾è¡¨ä¸­æ‰¾åˆ°eç»“ç‚¹å¹¶åˆ é™¤
 	LNode* q = L;
 	LNode* p = L->next;
 	while (p->next != NULL)
 	{
 		if (p->arr.size == e.size && p->arr.start == e.start)
-			break;          //ÕâÀïÌõ¼ş¿ÉÒÔ»»³Ép->arr==e  µ«ÊÇÒªÖØÔØ==  ÎÒÀÁµÃĞ´ÖØÔØº¯Êı
+			break;          //è¿™é‡Œæ¡ä»¶å¯ä»¥æ¢æˆp->arr==e  ä½†æ˜¯è¦é‡è½½==  æˆ‘æ‡’å¾—å†™é‡è½½å‡½æ•°
 		q = q->next;
 		p = p->next;
 	}
@@ -54,7 +54,7 @@ Linklist L;
 	p->next = NULL;
 	delete p;
 }
-/*¸³Öµ*/void SetValue()
+/*èµ‹å€¼*/void SetValue()
 {
 	srand(int(time(NULL)));
 	int a1, a2, a3, a4;
@@ -69,47 +69,47 @@ Linklist L;
 	setArray(r4, a4 - a3, a3, a4, true);
 	setArray(r5, 1024 - a4, a4, 1024, false);
 
-	//¸Õ¿ªÊ¼Ä¬ÈÏÓĞÁ½¸öÇø¿é±»Õ¼ÓÃ£¬Ãû×Ö·Ö±ğÊÇaºÍb
+	//åˆšå¼€å§‹é»˜è®¤æœ‰ä¸¤ä¸ªåŒºå—è¢«å ç”¨ï¼Œåå­—åˆ†åˆ«æ˜¯aå’Œb
 	r2.name = "a";
 	r4.name = "b";
 
-	//³õÊ¼»¯¿ÕÁ´±í
+	//åˆå§‹åŒ–ç©ºé“¾è¡¨
 	L = new LNode;
 	L->next = NULL;
 
-	//°Ñ³õÊ¼»¯µÄ½áµãÈ«²¿²åÈëÁ´±í
+	//æŠŠåˆå§‹åŒ–çš„ç»“ç‚¹å…¨éƒ¨æ’å…¥é“¾è¡¨
 	Insert(r1);
 	Insert(r2);
 	Insert(r3);
 	Insert(r4);
 	Insert(r5);   
 }
-/*ÊäÈë*/void Input(Array& e)
+/*è¾“å…¥*/void Input(Array& e)
 {
-	//eµÄ¸³Öµ
-	cout << "ÇëÊäÈëÄãÒª´´½¨µÄ½ø³ÌÃû×Ö:";
+	//eçš„èµ‹å€¼
+	cout << "è¯·è¾“å…¥ä½ è¦åˆ›å»ºçš„è¿›ç¨‹åå­—:";
 	cin >> e.name;
-	cout << "ÇëÊäÈëÄãÒª´´½¨µÄ½ø³Ì´óĞ¡:";
+	cout << "è¯·è¾“å…¥ä½ è¦åˆ›å»ºçš„è¿›ç¨‹å¤§å°:";
 	cin >> e.size;
 	e.state = true;
 }
-/*Êä³ö*/void Output()
+/*è¾“å‡º*/void Output()
 {
-	//Êä³öÁ´±íµÄÈ«²¿Öµ
+	//è¾“å‡ºé“¾è¡¨çš„å…¨éƒ¨å€¼
 	LNode* q = L->next;
-	cout << "µ±Ç°·ÖÇøÇé¿öÎª:" << endl;
+	cout << "å½“å‰åˆ†åŒºæƒ…å†µä¸º:" << endl;
 	while (q != NULL)
 	{
 		if (q->arr.state == false)
 		{
-			cout << "¿ÕÏĞÇø:  ½ø³ÌÃû×Ö:ÎŞ  ÆğÊ¼Î»ÖÃ:" << q->arr.start << "  ½áÊøÎ»ÖÃ:" << q->arr.end << "  ´óĞ¡:" << q->arr.size << endl;
+			cout << "ç©ºé—²åŒº:  è¿›ç¨‹åå­—:æ—   èµ·å§‹ä½ç½®:" << q->arr.start << "  ç»“æŸä½ç½®:" << q->arr.end << "  å¤§å°:" << q->arr.size << endl;
 		}
 		else
-			cout << "Õ¼ÓÃÇø:  ½ø³ÌÃû×Ö:" << q->arr.name << "   ÆğÊ¼Î»ÖÃ:" << q->arr.start << "  ½áÊøÎ»ÖÃ:" << q->arr.end << "  ´óĞ¡:" << q->arr.size << endl;
+			cout << "å ç”¨åŒº:  è¿›ç¨‹åå­—:" << q->arr.name << "   èµ·å§‹ä½ç½®:" << q->arr.start << "  ç»“æŸä½ç½®:" << q->arr.end << "  å¤§å°:" << q->arr.size << endl;
 		q = q->next;
 	}
 }
-/*ºÏ²¢*/void Combine()
+/*åˆå¹¶*/void Combine()
 {
 	LNode* q = L->next;
 	LNode* p = q->next;
@@ -117,18 +117,18 @@ Linklist L;
 	{
 		if (q->arr.state == false && p->arr.state == false)
 		{
-			//ÏàÁÚÁ½¸ö¿ÕÏĞÇøºÏ²¢ÔÚÒ»Æğ
+			//ç›¸é‚»ä¸¤ä¸ªç©ºé—²åŒºåˆå¹¶åœ¨ä¸€èµ·
 			p->arr.start = q->arr.start;
 			p->arr.size = q->arr.size + p->arr.size;
-			Delete(q->arr);  //µ÷ÓÃÉ¾³ıº¯Êı£¬É¾µôÇ°Ò»¸ö½áµã
+			Delete(q->arr);  //è°ƒç”¨åˆ é™¤å‡½æ•°ï¼Œåˆ æ‰å‰ä¸€ä¸ªç»“ç‚¹
 		}
 		q = p;
 		p = p->next;
 	}
 }
-/*»ØÊÕ*/void Recycle(string s)
+/*å›æ”¶*/void Recycle(string s)
 {
-	//ÕÒµ½½ø³ÌÃû×ÖÎªs²¢ÇÒ×´Ì¬ÎªÒÑÕ¼ÓÃ£¨true£©µÄ½áµã£¬°ÑËüµÄ×´Ì¬ĞŞ¸ÄÎª¿ÕÏĞ£¨false£©
+	//æ‰¾åˆ°è¿›ç¨‹åå­—ä¸ºså¹¶ä¸”çŠ¶æ€ä¸ºå·²å ç”¨ï¼ˆtrueï¼‰çš„ç»“ç‚¹ï¼ŒæŠŠå®ƒçš„çŠ¶æ€ä¿®æ”¹ä¸ºç©ºé—²ï¼ˆfalseï¼‰
 	LNode* p = L->next;
 	while (p != NULL)
 	{
@@ -139,31 +139,31 @@ Linklist L;
 		}
 		p = p->next;
 	}
-	Combine();   //µ÷ÓÃºÏ²¢º¯Êı¾Í¿ÉÒÔ»ØÊÕ¸Ã½áµã
+	Combine();   //è°ƒç”¨åˆå¹¶å‡½æ•°å°±å¯ä»¥å›æ”¶è¯¥ç»“ç‚¹
 }
-/*·Ö¸î*/void Cut(Array reply, Array apply)
+/*åˆ†å‰²*/void Cut(Array reply, Array apply)
 {
-	//°ÑÒ»¸ö¿ÕÏĞ½áµã·Ö³ÉÁ½¸ö½áµã  ÒÑÕ¼ÓÃ½áµãºóÃæ¸ú×Å¿ÕÏĞ½áµã
-	//replyÎª¿ÕÏĞ·ÖÇø£¬applyÎªÉêÇë·ÖÇø
+	//æŠŠä¸€ä¸ªç©ºé—²ç»“ç‚¹åˆ†æˆä¸¤ä¸ªç»“ç‚¹  å·²å ç”¨ç»“ç‚¹åé¢è·Ÿç€ç©ºé—²ç»“ç‚¹
+	//replyä¸ºç©ºé—²åˆ†åŒºï¼Œapplyä¸ºç”³è¯·åˆ†åŒº
 
 	if (reply.size < apply.size)
-		return;  //ÉêÇë·ÖÇøµÄ´óĞ¡´óÓÚ¿ÕÏĞ·ÖÇø£¬Ö±½Ó·µ»Ø
+		return;  //ç”³è¯·åˆ†åŒºçš„å¤§å°å¤§äºç©ºé—²åˆ†åŒºï¼Œç›´æ¥è¿”å›
 	LNode* q = L;
 	LNode* p = L->next;
 	LNode* temp = new LNode;
-	temp->arr = apply;  //°Ñapply¸³Öµ¸øtemp
+	temp->arr = apply;  //æŠŠapplyèµ‹å€¼ç»™temp
 	while (p->next != NULL)
 	{
-		//ÕÒµ½replyÔÚÁ´±íÖĞËù¶ÔÓ¦µÄ½áµãÖ¸ÕëpºÍËüµÄÇ°Ò»¸ö½áµãÖ¸Õëq
+		//æ‰¾åˆ°replyåœ¨é“¾è¡¨ä¸­æ‰€å¯¹åº”çš„ç»“ç‚¹æŒ‡é’ˆpå’Œå®ƒçš„å‰ä¸€ä¸ªç»“ç‚¹æŒ‡é’ˆq
 		if (p->arr.size == reply.size && p->arr.start == reply.start)
 			break;
 		q = q->next;
 		p = p->next;
 	}
-	q->next = temp;   //Ç°Ò»¸ö½áµãq½Ótemp
-	temp->next = p;   //temp½Óp
+	q->next = temp;   //å‰ä¸€ä¸ªç»“ç‚¹qæ¥temp
+	temp->next = p;   //tempæ¥p
 
-	//ĞŞ¸Ä½áµãµÄÊı¾İ
+	//ä¿®æ”¹ç»“ç‚¹çš„æ•°æ®
 	temp->arr.start = p->arr.start;
 	if (p->arr.start == 0)
 		temp->arr.end = temp->arr.size;
@@ -172,7 +172,7 @@ Linklist L;
 	p->arr.start = temp->arr.end;
 	p->arr.size = p->arr.size - temp->arr.size;
 
-	//·Ö¸îÍêÖ®ºó¿ÉÄÜ³öÏÖ´óĞ¡Îª0µÄ¿ÕÏĞ·ÖÇø£¬±éÀúÁ´±í£¬ÕÒµ½²¢É¾³ı´óĞ¡Îª0µÄ½áµã¼´¿É
+	//åˆ†å‰²å®Œä¹‹åå¯èƒ½å‡ºç°å¤§å°ä¸º0çš„ç©ºé—²åˆ†åŒºï¼Œéå†é“¾è¡¨ï¼Œæ‰¾åˆ°å¹¶åˆ é™¤å¤§å°ä¸º0çš„ç»“ç‚¹å³å¯
 	q = L->next;
 	while (q != NULL)
 	{
@@ -184,9 +184,9 @@ Linklist L;
 		q = q->next;
 	}
 }
-/*Êı×é´¦Àí*/void Manage()
+/*æ•°ç»„å¤„ç†*/void Manage()
 {
-	//°Ñ¿ÕÏĞ·ÖÇøµÄ´óĞ¡ÒÀ´Î¸³Öµ¸øorderÊı×é
+	//æŠŠç©ºé—²åˆ†åŒºçš„å¤§å°ä¾æ¬¡èµ‹å€¼ç»™orderæ•°ç»„
 	LNode* p = L->next;
 	n = 0;
 	while (p != NULL)
@@ -196,11 +196,11 @@ Linklist L;
 		p = p->next;
 	}
 }
-/*ÅÅĞò*/void Sort(int choice)
+/*æ’åº*/void Sort(int choice)
 {
-	//choice=0ÊÇÉıĞò£¬choice=1ÊÇ½µĞò
+	//choice=0æ˜¯å‡åºï¼Œchoice=1æ˜¯é™åº
 
-	Manage();  //Ã¿´ÎÅÅĞòÇ°¶¼ÖØĞÂ´¦ÀíorderÊı×é
+	Manage();  //æ¯æ¬¡æ’åºå‰éƒ½é‡æ–°å¤„ç†orderæ•°ç»„
 	int i, j, k;
 	int temp;
 	for (i = 0; i < n - 1; i++)
@@ -227,49 +227,55 @@ Linklist L;
 		}
 	}
 }
-/*Ê×ÏÈÊÊÅäËã·¨*/void FF()
+/*é¦–å…ˆé€‚é…ç®—æ³•*/void FF()
 {
 	Input(temp);
 	LNode* p = L->next;
-	while (p->next != NULL)
+
+	Sort(1);  //é™åºæ’åº
+	if (order[0] < temp.size)
 	{
-		//°´Ë³Ğò²éÕÒ£¬Åöµ½µÚÒ»¸öÂú×ã·ÖÅäÌõ¼şµÄ¿ÕÏĞ·ÖÇø¾ÍÍ£Ö¹²éÕÒ
-		if (p->arr.size >= temp.size && p->arr.state == false)
-			break;
-		p = p->next;
-	}
-	if (p->arr.size < temp.size || p->arr.state == true)
-	{
-		cout << "¿ÕÏĞ·ÖÇø¶¼²»Âú×ã·ÖÅäĞèÇó£¬·ÖÅäÊ§°Ü£¡" << endl;
+		cout << "ç©ºé—²åˆ†åŒºéƒ½ä¸æ»¡è¶³åˆ†é…éœ€æ±‚ï¼Œåˆ†é…å¤±è´¥ï¼" << endl;
 		return;
 	}
-	Cut(p->arr, temp);  //¶Ô¸Ã½áµãµ÷ÓÃ·Ö¸îº¯Êı
+
+	while (p->next != NULL)
+	{
+		//æŒ‰é¡ºåºæŸ¥æ‰¾ï¼Œç¢°åˆ°ç¬¬ä¸€ä¸ªæ»¡è¶³åˆ†é…æ¡ä»¶çš„ç©ºé—²åˆ†åŒºå°±åœæ­¢æŸ¥æ‰¾
+		if (p->arr.size >= temp.size && p->arr.state == false)
+		{
+			Cut(p->arr, temp);  //å¯¹è¯¥ç»“ç‚¹è°ƒç”¨åˆ†å‰²å‡½æ•°
+			break;
+		}
+		p = p->next;
+	}
+
 	Output();
 }
-/*Ñ­»·Ê×ÏÈÊÊÅäËã·¨*/void NF()
+/*å¾ªç¯é¦–å…ˆé€‚é…ç®—æ³•*/void NF()
 {
 	Input(temp);
-	Sort(1);  //½µĞòÅÅĞò
 
-	if (order[0] < temp.size)  //order[0]ÊÇ×î´óµÄ¿ÕÏĞ·ÖÇø
+	Sort(1);  //é™åºæ’åº
+	if (order[0] < temp.size)  //order[0]æ˜¯æœ€å¤§çš„ç©ºé—²åˆ†åŒº
 	{
-		cout << "¿ÕÏĞ·ÖÇø¶¼²»Âú×ã·ÖÅäĞèÇó£¬·ÖÅäÊ§°Ü£¡" << endl;
+		cout << "ç©ºé—²åˆ†åŒºéƒ½ä¸æ»¡è¶³åˆ†é…éœ€æ±‚ï¼Œåˆ†é…å¤±è´¥ï¼" << endl;
 		return;
 	}
 	
 	static LNode* p = L->next;
 	LNode* q;
 
-	while (1)  //ÒòÎªÓĞÂú×ã·ÖÅäÌõ¼şµÄ¿ÕÏĞ·ÖÇø£¬ËùÒÔÕâ²»ÊÇËÀÑ­»·
+	while (1)  //å› ä¸ºæœ‰æ»¡è¶³åˆ†é…æ¡ä»¶çš„ç©ºé—²åˆ†åŒºï¼Œæ‰€ä»¥è¿™ä¸æ˜¯æ­»å¾ªç¯
 	{
 		if (p == NULL)
-			p = L->next;  //´ÓÍ·¿ªÊ¼
+			p = L->next;  //ä»å¤´å¼€å§‹
 
-		//°´Ë³Ğò²éÕÒ£¬Åöµ½µÚÒ»¸öÂú×ã·ÖÅäÌõ¼şµÄ¿ÕÏĞ·ÖÇø¾ÍÍ£Ö¹²éÕÒ
+		//æŒ‰é¡ºåºæŸ¥æ‰¾ï¼Œç¢°åˆ°ç¬¬ä¸€ä¸ªæ»¡è¶³åˆ†é…æ¡ä»¶çš„ç©ºé—²åˆ†åŒºå°±åœæ­¢æŸ¥æ‰¾
 		if (p->arr.size >= temp.size && p->arr.state == false)
 		{
-			q = p->next;   //qÖ¸ÏòpµÄÏÂÒ»¸ö½áµã
-			Cut(p->arr, temp);  //·Ö¸îp
+			q = p->next;   //qæŒ‡å‘pçš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+			Cut(p->arr, temp);  //åˆ†å‰²p
 			p = q; 
 			break;
 		}
@@ -277,53 +283,56 @@ Linklist L;
 	}
 	Output();
 }
-/*×î¼ÑÊÊÅäËã·¨*/void BF()
+/*æœ€ä½³é€‚é…ç®—æ³•*/void BF()
 {
 	int x;
 	LNode* p = L->next;
 	Input(temp);
-	Sort(0);  //ÉıĞòÅÅĞò
 
+	Sort(1);  //é™åºæ’åº
+	if (order[0] < temp.size)
+	{
+		cout << "ç©ºé—²åˆ†åŒºéƒ½ä¸æ»¡è¶³åˆ†é…éœ€æ±‚ï¼Œåˆ†é…å¤±è´¥ï¼" << endl;
+		return;
+	}
+
+	Sort(0);  //å‡åºæ’åº
 	for (x = 0; x < n; x++)
 	{
-		//´ÓĞ¡Íù´óÕÒ£¬ÕÒµ½Âú×ã·ÖÅäÌõ¼şµÄ×îĞ¡¿ÕÏĞ·ÖÇøÊı×éÏÂ±ê
+		//ä»å°å¾€å¤§æ‰¾ï¼Œæ‰¾åˆ°æ»¡è¶³åˆ†é…æ¡ä»¶çš„æœ€å°ç©ºé—²åˆ†åŒºæ•°ç»„ä¸‹æ ‡
 		if (order[x] >= temp.size)
 			break;
 	}
-	if (order[x] < temp.size)
-	{
-		cout << "¿ÕÏĞ·ÖÇø¶¼²»Âú×ã·ÖÅäĞèÇó£¬·ÖÅäÊ§°Ü£¡" << endl;
-		return;
-	}
 	while (p != NULL)
 	{
-		//±éÀúÁ´±í£¬¸ù¾İ¸ÃÏÂ±ê¶ÔÓ¦µÄÊı×é´óĞ¡Öµ²éÕÒÄ¿±ê·ÖÇøÔÚÁ´±íÖĞµÄÎ»ÖÃ
+		//éå†é“¾è¡¨ï¼Œæ ¹æ®è¯¥ä¸‹æ ‡å¯¹åº”çš„æ•°ç»„å¤§å°å€¼æŸ¥æ‰¾ç›®æ ‡åˆ†åŒºåœ¨é“¾è¡¨ä¸­çš„ä½ç½®
 		if (p->arr.size == order[x] && p->arr.state == false)
 		{
-			Cut(p->arr, temp);  //¶Ô¸Ã½áµãµ÷ÓÃ·Ö¸îº¯Êı
+			Cut(p->arr, temp);  //å¯¹è¯¥ç»“ç‚¹è°ƒç”¨åˆ†å‰²å‡½æ•°
 			break;
 		}
 		p = p->next;
 	}
 	Output();
 }
-/*×î»µÊÊÅäËã·¨*/void WF()
+/*æœ€åé€‚é…ç®—æ³•*/void WF()
 {
 	LNode* p = L->next;
 	Input(temp);
-	Sort(1);  //½µĞòÅÅĞò
 
+	Sort(1);  //é™åºæ’åº
 	if (order[0] < temp.size)
 	{
-		cout << "¿ÕÏĞ·ÖÇø¶¼²»Âú×ã·ÖÅäĞèÇó£¬·ÖÅäÊ§°Ü£¡" << endl;
+		cout << "ç©ºé—²åˆ†åŒºéƒ½ä¸æ»¡è¶³åˆ†é…éœ€æ±‚ï¼Œåˆ†é…å¤±è´¥ï¼" << endl;
 		return;
 	}
+
 	while (p != NULL)
 	{
-		//±éÀúÁ´±í£¬ÕÒµ½order[0]Ëù¶ÔÓ¦µÄ·ÖÇøÎ»ÖÃ  ½µĞòÅÅĞòºóorder[0]×î´ó
+		//éå†é“¾è¡¨ï¼Œæ‰¾åˆ°order[0]æ‰€å¯¹åº”çš„åˆ†åŒºä½ç½®  é™åºæ’åºåorder[0]æœ€å¤§
 		if (p->arr.size == order[0] && p->arr.state == false)
 		{
-			Cut(p->arr, temp);  //¶Ô¸Ã½áµãµ÷ÓÃ·Ö¸îº¯Êı
+			Cut(p->arr, temp);  //å¯¹è¯¥ç»“ç‚¹è°ƒç”¨åˆ†å‰²å‡½æ•°
 			break;
 		}
 		p = p->next;
@@ -338,20 +347,20 @@ int main()
 loop:
 	Output();
 	cout << endl;
-	cout << "ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷:" << endl;
-	cout << "1¡¢Ê×ÏÈÊÊÅäËã·¨  2¡¢Ñ­»·Ê×ÏÈÊÊÅäËã·¨  3¡¢×î¼ÑÊÊÅäËã·¨  4¡¢×î»µÊÊÅäËã·¨  5¡¢ÖØĞÂÉú³ÉÄÚ´æ·ÖÇø  6¡¢»ØÊÕ½ø³Ì  7¡¢ÍË³ö" << endl;
-	cout << "ÄãµÄ²Ù×÷Îª:";
+	cout << "è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œ:" << endl;
+	cout << "1ã€é¦–å…ˆé€‚é…ç®—æ³•  2ã€å¾ªç¯é¦–å…ˆé€‚é…ç®—æ³•  3ã€æœ€ä½³é€‚é…ç®—æ³•  4ã€æœ€åé€‚é…ç®—æ³•  5ã€é‡æ–°ç”Ÿæˆå†…å­˜åˆ†åŒº  6ã€å›æ”¶è¿›ç¨‹  7ã€é€€å‡º" << endl;
+	cout << "ä½ çš„æ“ä½œä¸º:";
 	cin >> choice;
 	switch (choice)
 	{
 	case 1:
 	{
-		cout << "¿ªÊ¼Ö´ĞĞFFËã·¨" << endl;
+		cout << "å¼€å§‹æ‰§è¡ŒFFç®—æ³•" << endl;
 		while (1)
 		{
-			cout << "ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷:" << endl;
-			cout << "1¡¢ĞÂ½¨½ø³Ì  2¡¢»ØÊÕ½ø³Ì  3¡¢·µ»ØÉÏÒ»¼¶²Ëµ¥  4¡¢ÍË³ö³ÌĞò" << endl;
-			cout << "ÄãµÄ²Ù×÷Îª:";
+			cout << "è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œ:" << endl;
+			cout << "1ã€æ–°å»ºè¿›ç¨‹  2ã€å›æ”¶è¿›ç¨‹  3ã€è¿”å›ä¸Šä¸€çº§èœå•  4ã€é€€å‡ºç¨‹åº" << endl;
+			cout << "ä½ çš„æ“ä½œä¸º:";
 			cin >> choice;
 			switch (choice)
 			{
@@ -361,7 +370,7 @@ loop:
 			}; break;
 			case 2:
 			{
-				cout << "ÇëÊäÈëÄãÒª»ØÊÕµÄ½ø³ÌÃû×Ö:";
+				cout << "è¯·è¾“å…¥ä½ è¦å›æ”¶çš„è¿›ç¨‹åå­—:";
 				cin >> name;
 				Recycle(name);
 				Output();
@@ -379,12 +388,12 @@ loop:
 	case 2:
 	{
 		{
-			cout << "¿ªÊ¼Ö´ĞĞNFËã·¨" << endl;
+			cout << "å¼€å§‹æ‰§è¡ŒNFç®—æ³•" << endl;
 			while (1)
 			{
-				cout << "ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷:" << endl;
-				cout << "1¡¢ĞÂ½¨½ø³Ì  2¡¢»ØÊÕ½ø³Ì  3¡¢·µ»ØÉÏÒ»¼¶²Ëµ¥  4¡¢ÍË³ö³ÌĞò" << endl;
-				cout << "ÄãµÄ²Ù×÷Îª:";
+				cout << "è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œ:" << endl;
+				cout << "1ã€æ–°å»ºè¿›ç¨‹  2ã€å›æ”¶è¿›ç¨‹  3ã€è¿”å›ä¸Šä¸€çº§èœå•  4ã€é€€å‡ºç¨‹åº" << endl;
+				cout << "ä½ çš„æ“ä½œä¸º:";
 				cin >> choice;
 				switch (choice)
 				{
@@ -394,7 +403,7 @@ loop:
 				}; break;
 				case 2:
 				{
-					cout << "ÇëÊäÈëÄãÒª»ØÊÕµÄ½ø³ÌÃû×Ö:";
+					cout << "è¯·è¾“å…¥ä½ è¦å›æ”¶çš„è¿›ç¨‹åå­—:";
 					cin >> name;
 					Recycle(name);
 					Output();
@@ -412,12 +421,12 @@ loop:
 	}; break;
 	case 3:
 	{
-		cout << "¿ªÊ¼Ö´ĞĞBFËã·¨" << endl;
+		cout << "å¼€å§‹æ‰§è¡ŒBFç®—æ³•" << endl;
 		while (1)
 		{
-			cout << "ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷:" << endl;
-			cout << "1¡¢ĞÂ½¨½ø³Ì  2¡¢»ØÊÕ½ø³Ì  3¡¢·µ»ØÉÏÒ»¼¶²Ëµ¥  4¡¢ÍË³ö³ÌĞò" << endl;
-			cout << "ÄãµÄ²Ù×÷Îª:";
+			cout << "è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œ:" << endl;
+			cout << "1ã€æ–°å»ºè¿›ç¨‹  2ã€å›æ”¶è¿›ç¨‹  3ã€è¿”å›ä¸Šä¸€çº§èœå•  4ã€é€€å‡ºç¨‹åº" << endl;
+			cout << "ä½ çš„æ“ä½œä¸º:";
 			cin >> choice;
 			switch (choice)
 			{
@@ -427,7 +436,7 @@ loop:
 			}; break;
 			case 2:
 			{
-				cout << "ÇëÊäÈëÄãÒª»ØÊÕµÄ½ø³ÌÃû×Ö:";
+				cout << "è¯·è¾“å…¥ä½ è¦å›æ”¶çš„è¿›ç¨‹åå­—:";
 				cin >> name;
 				Recycle(name);
 				Output();
@@ -444,12 +453,12 @@ loop:
 	}; break;
 	case 4:
 	{
-		cout << "¿ªÊ¼Ö´ĞĞWFËã·¨" << endl;
+		cout << "å¼€å§‹æ‰§è¡ŒWFç®—æ³•" << endl;
 		while (1)
 		{
-			cout << "ÇëÊäÈëÄãÒª½øĞĞµÄ²Ù×÷:" << endl;
-			cout << "1¡¢ĞÂ½¨½ø³Ì  2¡¢»ØÊÕ½ø³Ì  3¡¢·µ»ØÉÏÒ»¼¶²Ëµ¥  4¡¢ÍË³ö³ÌĞò" << endl;
-			cout << "ÄãµÄ²Ù×÷Îª:";
+			cout << "è¯·è¾“å…¥ä½ è¦è¿›è¡Œçš„æ“ä½œ:" << endl;
+			cout << "1ã€æ–°å»ºè¿›ç¨‹  2ã€å›æ”¶è¿›ç¨‹  3ã€è¿”å›ä¸Šä¸€çº§èœå•  4ã€é€€å‡ºç¨‹åº" << endl;
+			cout << "ä½ çš„æ“ä½œä¸º:";
 			cin >> choice;
 			switch (choice)
 			{
@@ -459,7 +468,7 @@ loop:
 			}; break;
 			case 2:
 			{
-				cout << "ÇëÊäÈëÄãÒª»ØÊÕµÄ½ø³ÌÃû×Ö:";
+				cout << "è¯·è¾“å…¥ä½ è¦å›æ”¶çš„è¿›ç¨‹åå­—:";
 				cin >> name;
 				Recycle(name);
 				Output();
@@ -482,7 +491,7 @@ loop:
 	}; break;
 	case 6:
 	{
-		cout << "ÇëÊäÈëÄãÒª»ØÊÕµÄ½ø³ÌÃû×Ö:";
+		cout << "è¯·è¾“å…¥ä½ è¦å›æ”¶çš„è¿›ç¨‹åå­—:";
 		cin >> name;
 		Recycle(name);
 		system("cls");
