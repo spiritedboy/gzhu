@@ -16,7 +16,7 @@ typedef struct LNode
 	struct LNode* next;
 }*Linklist;  //链表
 
-Array r1, r2, r3, r4, r5, temp;
+Array temp;
 int order[10];  //存放每个空闲区块的大小
 int n;   //空闲区块的数量
 Linklist L;
@@ -57,12 +57,14 @@ Linklist L;
 /*赋值*/void SetValue()
 {
 	srand(int(time(NULL)));
+
 	int a1, a2, a3, a4;
 	a1 = rand() % 256;
 	a2 = rand() % 256 + a1;
 	a3 = rand() % 256 + a2;
 	a4 = rand() % 256 + a3;
 
+	Array r1, r2, r3, r4, r5;   //定义初始的五个结点
 	setArray(r1, a1, 0, a1, false);
 	setArray(r2, a2 - a1, a1, a2, true);
 	setArray(r3, a3 - a2, a2, a3, false);
